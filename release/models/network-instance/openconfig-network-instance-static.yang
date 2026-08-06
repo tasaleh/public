@@ -27,7 +27,7 @@ module openconfig-network-instance-static {
 
   revision "2026-07-07" {
     description
-      "Add a global encapsulation header template for static next-hops.";
+      "Add a global encapsulation header configurations for static next-hops.";
     reference "0.3.0";
   }
 
@@ -63,10 +63,10 @@ module openconfig-network-instance-static {
           statically configured next hop group";
       }
 
-      uses static-encap-header-template-top {
+      uses static-global-encap-header-top {
         description
           "Configuration and state parameters relating to the global
-          encapsulation header template.";
+          encapsulation header.";
       }
 
       uses static-next-hops-top {
@@ -164,36 +164,34 @@ module openconfig-network-instance-static {
     }
   }
 
-  grouping static-encap-header-template-top {
+  grouping static-global-encap-header-top {
     description
-      "Logical grouping for the global encapsulation header template.";
+      "Logical grouping for the global encapsulation header.";
 
-    container encap-header-template {
+    container encap-header {
       description
-        "Surrounding container for the global encapsulation header template.";
+        "Surrounding container for the global encapsulation header.";
 
       container config {
         description
-          "Configuration parameters relating to the encapsulation header
-          template.";
+          "Configuration parameters relating to the global encapsulation header.";
 
-        uses static-encap-header-template;
+        uses static-global-encap-header;
       }
 
       container state {
         config false;
         description
-          "State parameters relating to the encapsulation header template.";
+          "State parameters relating to the global encapsulation header.";
 
-        uses static-encap-header-template;
+        uses static-global-encap-header;
       }
     }
   }
 
-  grouping static-encap-header-template {
+  grouping static-global-encap-header {
     description
-      "Configuration parameters for the global encapsulation header
-      template.";
+      "Configuration parameters for the global encapsulation header.";
 
     leaf ipv4-dst-udp-port {
       type oc-inet:port-number;
